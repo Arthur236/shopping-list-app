@@ -9,10 +9,12 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href="css/flickity.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
 <body>
+<!-- Background slider -->
 <div class="slider fullscreen">
     <ul class="slides">
         <li><img src="img/1.jpg"></li>
@@ -26,22 +28,145 @@
 
 <div class="overlay"></div>
 
-<div class="content">
+<div class="content" id="pageContent">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand"><img src="img/logo_white.png" height="90px"></div>
             </div>
         </div>
+
+        <div class="row landingContent">
+            <!-- Quote -->
+            <div class="col s12 m12 l7">
+                <div class="quote">
+                    <ul id="quoteItems">
+                        <li><h1 class="line1 wow fadeInLeft">Welcome To The Ultimate Shopping List Helper</h1></li>
+                        <li><h3 class="line2 wow fadeInLeft">Get organized and never forget those all so important ingredients</h3></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Forms -->
+            <div class="col s12 m12 l5 main-carousel formsContainer wow fadeInRight">
+                <div class="row carousel-cell landingForm">
+                    <div class="col s12">
+                        <h3>Register</h3>
+                    </div>
+
+                    <form method="POST" action="" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="username">Username</label>
+                                <input id="username" name="username" required="required"
+                                        type="text"/>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <label for="password">Password</label>
+                                <input id="password" name="password" required="required"
+                                        type="password"/>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <label for="conf_password">Confirm Password</label>
+                                <input id="conf_password" name="conf_password" required="required"
+                                        type="password"/>
+                            </div>
+
+                            <div class="col s12">
+                                <button class="btn btn-large waves-effect waves-dark deep-purple" type="submit"
+                                        name="register">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="col s12">
+                        <p class="center-align ">
+                            Already have an account? <a href="#" id="signin-link" class="formLink">Sign In</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row landingForm carousel-cell">
+                    <div class="col s12">
+                        <h3>Sign in</h3>
+                    </div>
+
+                    <form method="POST" action="" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="username2">Username</label>
+                                <input id="username2" name="username2" required="required"
+                                        type="text"/>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <label for="password2">Password</label>
+                                <input id="password2" name="password2" required="required"
+                                        type="password"/>
+                            </div>
+
+                            <div class="col s12">
+                                <button class="btn btn-large waves-effect waves-dark deep-purple" type="submit"
+                                        name="signin">
+                                    Sign In
+                                </button>
+                            </div>
+                            <div class="col s12">
+                                <p class="center-align ">
+                                    Already have an account? <a href="#" id="signup-link" class="formLink">Register</a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="row page-footer wow fadeInDown">
+            <p class="copyright">
+                ©2017 Shopping List Application. A project by <a href="#">Arthur Thungu</a>
+            </p>
+        </div>
     </div>
 </div>
 
+<!-- Scripts -->
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
-<script src="js/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="js/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="js/wow.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.slider').slider({indicators: false});
+
+        //Initialize flickity
+        $formsContainer = $('.formsContainer').flickity({
+            // options
+            setGallerySize: true,
+            draggable: false,
+            freeScroll: false,
+            prevNextButtons: false,
+            pageDots: false
+        });
+
+        $('#signin-link').click(function(){
+            $formsContainer.flickity( 'select', 1 );
+        });
+
+        $('#signup-link').click(function(){
+            $formsContainer.flickity( 'select', 0 );
+        });
+
+        //Initialize wow js
+        var wow = new WOW({
+            scrollContainer: '#pageContent' // optional scroll container selector, otherwise use window
+        });
+        wow.init();
     });
 </script>
 

@@ -22,3 +22,58 @@ html, body {
     overflow: scroll;
     z-index: 10;
 }
+
+.line2 {
+    -vendor-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+.formsContainer {
+    margin-top: 15px;
+    min-height: 430px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+    -vendor-animation-delay: 3s;
+    animation-delay: 3s;
+}
+
+@media only screen and (max-width: 992px) {
+    .formsContainer {
+        margin-top: 50px;
+        -vendor-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+}
+
+.landingForm {
+    padding: 40px 40px;
+}
+
+.landingForm form div .btn {
+    width: 100%;
+}
+
+.carousel-cell {
+    width: 100%;
+}
+
+/* label underline focus color */
+.input-field input:focus,
+.input-field input:focus {
+    border-bottom: 1px solid #673AB7 !important;
+    box-shadow: 0 1px 0 0 #673AB7 !important;
+}
+
+.formLink {
+    color: #FF5252;
+}
+
+.page-footer {
+    padding-top: 0;
+    background-color: transparent;
+    color: #9e9e9e;
+    -vendor-animation-delay: 1s;
+    animation-delay: 1s;
+}
