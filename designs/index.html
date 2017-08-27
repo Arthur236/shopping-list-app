@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="css/flickity.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+<div class="slider fullscreen">
+    <ul class="slides">
+        <li><img src="img/1.jpg"></li>
+        <li><img src="img/2.jpg"></li>
+        <li><img src="img/3.jpg"></li>
+        <li><img src="img/4.jpg"></li>
+        <li><img src="img/5.jpeg"></li>
+        <li><img src="img/6.jpeg"></li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.js"></script>
+<script src="js/flickity.pkgd.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.slider').slider({indicators: false});
+    });
+</script>
+
+</body>
+</html>
