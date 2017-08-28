@@ -5,13 +5,17 @@ html, body {
     color: #9e9e9e;
 }
 
-.overlay {
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    position: absolute;
-    background-color: rgba(25, 30, 40, 0.9);
-    z-index: 5;
+.preloaderBackground {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(27, 23, 34, 1);
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
 }
 
 .content {
@@ -21,42 +25,6 @@ html, body {
     position: relative;
     overflow: scroll;
     z-index: 10;
-}
-
-.line2 {
-    -vendor-animation-delay: 1s;
-    animation-delay: 1s;
-}
-
-.formsContainer {
-    margin-top: 15px;
-    min-height: 430px;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
-    -vendor-animation-delay: 3s;
-    animation-delay: 3s;
-}
-
-@media only screen and (max-width: 992px) {
-    .formsContainer {
-        margin-top: 50px;
-        -vendor-animation-delay: 1s;
-        animation-delay: 1s;
-    }
-}
-
-.landingForm {
-    padding: 40px 40px;
-}
-
-.landingForm form div .btn {
-    width: 100%;
-}
-
-.carousel-cell {
-    width: 100%;
 }
 
 /* label underline focus color */
@@ -77,3 +45,127 @@ html, body {
     -vendor-animation-delay: 1s;
     animation-delay: 1s;
 }
+
+/***************************** index *****************************/
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    background-color: rgba(27, 23, 34, 0.9);
+    z-index: 5;
+}
+
+.line1 {
+    -vendor-animation-delay: 2s;
+    animation-delay: 2s;
+}
+
+.line2 {
+    -vendor-animation-delay: 3s;
+    animation-delay: 3s;
+}
+
+.formsContainer {
+    margin-top: 15px;
+    min-height: 430px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+    -vendor-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
+@media only screen and (max-width: 992px) {
+    .formsContainer {
+        margin-top: 50px;
+        -vendor-animation-delay: 4s;
+        animation-delay: 4s;
+    }
+}
+
+.landingForm {
+    padding: 40px 40px;
+}
+
+.landingForm form div .btn {
+    width: 100%;
+}
+
+.carousel-cell {
+    width: 100%;
+}
+
+/***************************** dashboard *****************************/
+
+.side-nav {
+    width: 250px;
+    background-color: #1b1722;
+}
+
+.brand {
+    padding-top: 20px;
+}
+
+.side-nav .container .user-options {
+    margin-top: 50px;
+}
+
+.side-nav .container .user-options .userLink {
+    color: #673AB7;
+    margin-bottom: 20px;
+}
+
+.side-nav .container .user-options li a {
+    color: #9e9e9e;
+    font-size: 1rem;
+    height: 40px;
+    line-height: 40px;
+    -webkit-transition: color 0.5s;
+    transition: color 0.5s;
+}
+
+.side-nav .container .user-options li:hover a,
+.side-nav .container .user-options li:focus a,
+.side-nav .container .user-options li.active a {
+    color: #d4d4d6;
+    background: none;
+}
+
+.content .fixed-action-btn {
+    -vendor-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
+.dashboard {
+    color: #171c22;
+}
+
+.dashboard .container {
+    padding-top: 20px;
+}
+
+.card {
+    -vendor-animation-delay: 3s;
+    animation-delay: 3s;
+}
+
+.card-title {
+    color: #673AB7;
+}
+
+.card-content .fixed-action-btn {
+    float: right;
+    position: relative;
+    top: -50px;
+    right: 0px;
+    z-index: 90;
+}
+
+.fixed-action-btn.horizontal ul li {
+    margin: 0;
+}
+
+

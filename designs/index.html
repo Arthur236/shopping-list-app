@@ -4,16 +4,64 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+    <title>Home</title>
+    
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.png">
+    <link rel="icon" href="img/favicon.png" sizes="32x32">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection"/>
-    <link rel="stylesheet" type="text/css" href="css/flickity.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/flickity.min.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
 <body>
+
+<!-- Preloader -->
+<div class="preloaderBackground">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+        
+        <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Background slider -->
 <div class="slider fullscreen">
     <ul class="slides">
@@ -42,7 +90,7 @@
                 <div class="quote">
                     <ul id="quoteItems">
                         <li><h1 class="line1 wow fadeInLeft">Welcome To The Ultimate Shopping List Helper</h1></li>
-                        <li><h3 class="line2 wow fadeInLeft">Get organized and never forget those all so important ingredients</h3></li>
+                        <li><h3 class="line2 wow fadeInLeft">Get organized and never forget items of interest</h3></li>
                     </ul>
                 </div>
             </div>
@@ -140,6 +188,7 @@
 <script type="text/javascript" src="js/materialize.js"></script>
 <script type="text/javascript" src="js/flickity.pkgd.min.js"></script>
 <script type="text/javascript" src="js/wow.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.slider').slider({indicators: false});
