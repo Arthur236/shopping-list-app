@@ -168,4 +168,21 @@ html, body {
     margin: 0;
 }
 
+/***************************** add_shopping_list *****************************/
 
+.shoppingListCont {
+    -vendor-animation-delay: 3s;
+    animation-delay: 3s;
+}
+
+.leftInputs {
+    float: left;
+}
+
+.rightIcons {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
