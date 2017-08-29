@@ -45,7 +45,7 @@ html, body {
     height: 100%;
     min-height: 100%;
     position: relative;
-    overflow: scroll;
+    overflow: auto;
     z-index: 10;
 }
 
@@ -135,9 +135,28 @@ html, body {
     background: none;
 }
 
-.content .fixed-action-btn {
+.cornerFab .fixed-action-btn {
     -vendor-animation-delay: 4s;
     animation-delay: 4s;
+}
+
+.cornerFab .fixed-action-btn .btn-floating {
+    transition: all 0.8s ease;
+}
+
+.cornerFab .fixed-action-btn ul li {
+    color: #fefefe;
+    margin: 3px;
+}
+
+.cornerFab .fixed-action-btn ul li p {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.cornerFab .fixed-action-btn .horizontal ul li {
+    right: 50px;
 }
 
 .dashboard {
@@ -148,7 +167,7 @@ html, body {
     padding-top: 20px;
 }
 
-.card {
+.container {
     -vendor-animation-delay: 3s;
     animation-delay: 3s;
 }
@@ -165,7 +184,7 @@ html, body {
     z-index: 90;
 }
 
-.fixed-action-btn.horizontal ul {
+.card-content .fixed-action-btn.horizontal ul {
     right: 45px;
 }
 
@@ -178,7 +197,7 @@ html, body {
     background-color: #FF5252;
 }
 
-.fixed-action-btn.horizontal ul li {
+.card-content .fixed-action-btn.horizontal ul li {
     margin: 0;
 }
 
@@ -187,6 +206,7 @@ html, body {
 .shoppingListCont {
     -vendor-animation-delay: 3s;
     animation-delay: 3s;
+    padding-top: 20px; 
 }
 
 #listItems div span a {

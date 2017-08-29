@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Add Shopping List</title>
+    <title>Edit Shopping List Item</title>
 
     <!-- Favicons-->
     <link rel="apple-touch-icon-precomposed" href="img/favicon.png">
@@ -94,27 +94,20 @@
         <div class="container shoppingListCont wow fadeInLeft">
             <div class="row">
                 <div class="col s12 m7 l7">
-                    <h3>Add Shopping List</h3>
+                    <h3>Edit Shopping List Item</h3>
 
                     <form method="POST" action="" class="col s12">
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="name">Name</label>
+                                <label for="name">Item Name</label>
                                 <input id="name" name="name" required="required" type="text" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="description">Description</label>
-                                <input id="description" name="description" type="text" />
                             </div>
                         </div>
 
                         <div class="col s12 right-align">
                             <button class="btn btn-large waves-effect waves-dark deep-purple" type="submit" name="add">
-                                Create
-                            </button>
+                                    Edit
+                                </button>
                         </div>
                     </form>
                 </div>
@@ -135,6 +128,9 @@
 
             //Initialize wow js
             new WOW().init();
+
+            //Initialize modal
+            $('.modal').modal();
         });
     </script>
 
