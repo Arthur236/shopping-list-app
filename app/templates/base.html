@@ -5,19 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Add Shopping List</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Favicons-->
-    <link rel="apple-touch-icon-precomposed" href="img/favicon.png">
-    <link rel="icon" href="img/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" sizes="32x32">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
-    <link rel="stylesheet" type="text/css" href="css/flickity.min.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css') }}" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/flickity.min.css') }}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 
 <body>
@@ -66,7 +66,7 @@
     <!-- Sidebar -->
     <div id="slide-out" class="side-nav">
         <div class="container">
-            <div class="brand"><img src="img/logo_white.png" width="210px"></div>
+            <div class="brand"><img src="{{ url_for('static', filename='img/logo_white.png') }}" width="210px"></div>
 
             <ul class="user-options">
                 <li>
@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <hr/>
-                <li class="active"><a href="#" class="">Shopping Lists</a></li>
+                <li class="active"><a href="#" class="">My Shopping Lists</a></li>
                 <li><a href="#" class="">Sign Out</a></li>
             </ul>
         </div>
@@ -84,50 +84,21 @@
     <!-- Main navigation -->
     <nav class="deep-purple">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Shopping Lists</a>
+            <a href="#" class="brand-logo center">{% block navTitle %}{% endblock %}</a>
             <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
         </div>
     </nav>
 
     <!-- Page content -->
-    <div class="content">
-        <div class="container shoppingListCont wow fadeInLeft">
-            <div class="row">
-                <div class="col s12 m7 l7">
-                    <h3>Add Shopping List</h3>
-
-                    <form method="POST" action="" class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="name">Name</label>
-                                <input id="name" name="name" required="required" type="text" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="description">Description</label>
-                                <input id="description" name="description" type="text" />
-                            </div>
-                        </div>
-
-                        <div class="col s12 right-align">
-                            <button class="btn btn-large waves-effect waves-dark deep-purple" type="submit" name="add">
-                                Create
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% block content %}
+    {% endblock %}
 
     <!-- Scripts -->
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.js"></script>
-    <script type="text/javascript" src="js/flickity.pkgd.min.js"></script>
-    <script type="text/javascript" src="js/wow.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/flickity.pkgd.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/wow.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             // Initialize collapse button
@@ -135,6 +106,9 @@
 
             //Initialize wow js
             new WOW().init();
+
+            //Initialize modal
+            $('.modal').modal();
         });
     </script>
 
