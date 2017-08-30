@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
-{% block title %}Add Shopping List{% endblock %} 
+{% block title %}Add Shopping List{% endblock %}
+{% block navTitle %}Create Shopping List{% endblock %}
 {% block content %}
 <div class="content">
     <div class="container shoppingListCont wow fadeInLeft">
@@ -7,7 +8,7 @@
             <div class="col s12 m7 l7">
                 <h3>Add Shopping List</h3>
 
-                <form method="POST" action="" class="col s12">
+                <form method="POST" action="/create_list" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="name">Name</label>

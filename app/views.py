@@ -65,12 +65,25 @@ def dashboard():
         else:
             return render_template('index.html', resp=status)
 
-@app.route('/create_list')
+@app.route('/create_list', methods=['GET', 'POST'])
 @login_required
 def create_list():
     """
     View used to create new shopping lists
     """
+    user = session['username']
+
+    if request.method == 'POST':
+        list_name = request.form['name']
+        description = request.form['description']
+        status = list_object.create_list(user, list_name, description)
+
+        if isinstance(status, list):
+            user_lists = list_object.show_lists(user)
+            return render_template('dashboard.html', shopping_lists=user_lists)
+        else:
+            return render_template("create_shopping_list.html", error=status)
+
     return render_template("create_shopping_list.html")
 
 @app.route('/edit_list/<name>')
@@ -81,13 +94,13 @@ def edit_list(name):
     """
     return render_template("edit_shopping_list.html")
 
-@app.route('/edit_list/<name>')
+@app.route('/delete_list/<name>', methods=['POST'])
 @login_required
 def delete_list(name):
     """
     Used to delete shopping list
     """
-    user = session['email']
+    user = session['username']
     if request.method == 'POST':
         status = list_object.delete_list(name, user)
         # Delete list items

@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 {% block title %}Dashboard{% endblock %}
+{% block navTitle %}My Shopping Lists{% endblock %}
 {% block content %}
 <div class="content">
     <div class="cornerFab">
@@ -16,33 +17,38 @@
                 {% if shopping_lists %}
                     {% for s_list in shopping_lists %}
                     <div class="col s12 m6 l6">
-                        <a href="/view_list/{{ item['name'] }}">
+                        <a href="/view_list/{{ s_list['name'] }}">
                             <div class="card white">
                                 <div class="card-content">
-                                    <span class="card-title">{{ item['name'] }}</span>
+                                    <span class="card-title">{{ s_list['name'] }}</span>
                                     <div class="fixed-action-btn horizontal">
                                         <a class="btn-floating btn"><i class="material-icons">menu</i></a>
                                         <ul>
-                                            <li><a href="#deleteModal" class="btn-floating modal-trigger"><i class="material-icons">delete</i></a></li>
-                                            <li><a href="/edit_list/{{ item['name'] }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
+                                            <li><a href="#modal_{{s_list['name']}}" class="btn-floating modal-trigger"><i class="material-icons">delete</i></a></li>
+                                            <li><a href="/edit_list/{{ s_list['name'] }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
                                         </ul>
                                     </div>
+                                    <p>{{ s_list['description'] }}</p>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    {% endfor %}
 
                     <!-- Delete modal -->
-                    <div id="modal1" class="modal">
+                    <div id="modal_{{s_list['name']}}" class="modal">
                         <div class="modal-content">
-                            <h4>Delete {{ item['name'] }}</h4>
+                            <h4>Delete {{ s_list['name'] }}</h4>
                             <p>Are you sure you want to delete this shopping list?</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="/delete_list/{{ item['name'] }}" class="modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
+                            <form method="POST" action="/delete_list/{{ s_list['name'] }}">
+                                <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="add">
+                                        Delete
+                                </button>
+                            </form>
                         </div>
                     </div>
+                    {% endfor %}
 
                 {% else %}
                     <blockquote>
