@@ -87,7 +87,14 @@ def delete_list(name):
     """
     Used to delete shopping list
     """
-    return render_template("edit_shopping_list.html")
+    user = session['email']
+    if request.method == 'POST':
+        status = list_object.delete_list(name, user)
+        # Delete list items
+        item_object.delete_list_items(name)
+        response = "Successfuly deleted " + name + " shopping list"
+    
+    return render_template("dashboard.html", error=response, shopping_lists=status)
 
 @app.route('/view_list/<name>')
 @login_required
