@@ -12,9 +12,9 @@ class User(object):
         """
         self.user_list = []
 
-    def create_user(self, username, password, cpassword): 
+    def create_user(self, username, password, cpassword):
         """
-        Registers new users    
+        Registers new users
         Arguments:
             username: string -- user name
             password: string -- password
@@ -23,12 +23,12 @@ class User(object):
             Status message
         """
         user_dict = {}
-        #check if user is already registered
+        # check if user is already registered
         for user in self.user_list:
             if username == user['username']:
                 return "The user already exists."
             else:
-                #check if password is long enough
+                # check if password is long enough
                 if len(password) < 6:
                     return "The password should be at least 6 characters long"
                 elif password == cpassword:
