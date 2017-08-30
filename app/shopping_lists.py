@@ -41,7 +41,7 @@ class ShoppingList(object):
             for item in user_lists:
                 if name == item['name']:
                     return "That shopping list already exists."
-            shopping_dict = {'owner': username, 'name': name}
+            shopping_dict = {'owner': username, 'name': name, 'description': description}
             self.shopping_list.append(shopping_dict)
         else:
             return "The name cannot contain special characters"
@@ -65,6 +65,7 @@ class ShoppingList(object):
                     return "That name is already in use"
                 elif old_name == item['name']:
                     item['name'] = new_name
+                    item['description'] = description
         else:
             return "The name cannot contain special characters"
         return self.show_lists(user)
