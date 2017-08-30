@@ -56,9 +56,9 @@ class ShoppingListTests(unittest.TestCase):
         """
         Test if list is correctly updated
         """
-        self.shopping_list_data.shopping_list = [{'owner': 'random', 'name': 'List 1'}, {'owner': 'random', 'name': 'List 2'}, {'owner': 'random2', 'name': 'List 3'}]
-        result = self.shopping_list_data.update_list('List 1', 'Awesome List', "random")
-        self.assertEqual(result, [{'owner': 'random', 'name': 'Awesome List'}, {'owner': 'random', 'name': 'List 2'}, {'owner': 'random2', 'name': 'List 3'}])
+        self.shopping_list_data.shopping_list = [{'owner': 'random', 'name': 'Awesome List'}]
+        result = self.shopping_list_data.update_list('Awesome List', 'Awesome List 2', "random")
+        self.assertEqual(result, [{'owner': 'random', 'name': 'Awesome List 2'}])
 
     def test_update_existing_list(self):
         """

@@ -64,9 +64,7 @@ class ShoppingList(object):
                 if new_name == item['name']:
                     return "That name is already in use"
                 elif old_name == item['name']:
-                    del item['name']
-                    edit_dict = {'name': new_name}
-                    item.update(edit_dict)
+                    item['name'] = new_name
         else:
             return "The name cannot contain special characters"
         return self.show_lists(user)
