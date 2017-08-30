@@ -2,7 +2,7 @@
 Class fot shopping list items test cases
 """
 import unittest
-from app.list_items import ListItems
+from app.shopping_list_items import ListItems
 
 class TestCasesItems(unittest.TestCase):
     """
@@ -25,7 +25,7 @@ class TestCasesItems(unittest.TestCase):
         """
         Test if list item exists
         """
-        self.list_data.item_list = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 2', 'name': 'Item 2'}]
+        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 2', 'name': 'Item 2'}]
         result = self.list_data.add_item("random", "List 1", "Item 1")
         self.assertEqual(result, "Item already exists")
 
@@ -33,14 +33,14 @@ class TestCasesItems(unittest.TestCase):
         """
         Test of item name has special characters
         """
-        result = self.list_data.add_item("random", "List 1", "Item 1")
+        result = self.list_data.add_item("random", "List 1", "Item 1/*")
         self.assertEqual(result, "Name cannot contain special characters")
 
     def test_for_item_owner(self):
         """
         Test if item belongs to owner
         """
-        self.list_data.item_list = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random2', 'list': 'List 2', 'name': 'Item 1'}]
+        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random2', 'list': 'List 2', 'name': 'Item 1'}]
         result = self.list_data.show_items("random", "List 1")
         self.assertEqual(result, [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}])
 
@@ -55,23 +55,23 @@ class TestCasesItems(unittest.TestCase):
         """
         Test if items are editted correctly
         """
-        self.list_data.item_list = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}]
-        result = self.list_data.edit_item('Item 1', 'Item 2', 'List 1', "random")
+        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}]
+        result = self.list_data.update_item('Item 1', 'Item 2', 'List 1', "random")
         self.assertEqual(result, [{'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}])
 
     def test_item_exists_on_edit(self):
         """
         Test if name of item exists when trying to edit
         """
-        self.list_data.item_list = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
-        result = self.list_data.edit_item('Item 1', 'Item 2', 'List 1', "random")
+        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}]
+        result = self.list_data.update_item('List 1', 'List 1', 'List 1', 'random')
         self.assertEqual(result, "Item already exists")
 
     def test_item_delete(self):
         """
         Test if item is deleted successfully
         """
-        self.list_data.item_list = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
+        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
         result = self.list_data.delete_item('Item 1', "List 1", 'random')
         self.assertEqual(result, ['Item 2'])
 
@@ -79,8 +79,8 @@ class TestCasesItems(unittest.TestCase):
         """
         Test if a deleting a list deletes it's items
         """
-        self.list_data.item_list = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
-        res = self.list_data.delete_list('List 1')
+        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
+        res = self.list_data.delete_list_items('List 1')
         self.assertEqual(res, None)
 
 
