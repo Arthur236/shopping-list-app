@@ -1,57 +1,61 @@
 """
 User class
 """
-class User(object):
+
+import re
+
+class UserOps(object):
     """
-    Code for user registration and sign in
+    Code to handle registration and log in of users
     """
 
     def __init__(self):
-        """
-        Initialize variables
-        """
+        # list to contain users
         self.user_list = []
 
-    def create_user(self, username, password, cpassword):
+    def register(self, username, password, cpassword):
         """
-        Registers new users
+        Registers users
         Arguments:
-            username: string -- user name
-            password: string -- password
-            cpassword: string -- password
+            username: string
+            password: string
         Returns:
             Status message
         """
+        # empty dict to hold each user
         user_dict = {}
-        # check if user is already registered
+        # check for existing user
         for user in self.user_list:
             if username == user['username']:
                 return "The user already exists."
+        else:
+            # check for password length and mismatch
+            if len(password) < 6:
+                return "The password should be at least 6 characters long"
+            elif password != cpassword:
+                return "The passwords do not match"
+            elif not re.match("^[a-zA-Z0-9_]*$", username):
+                return "The username cannot contain special characters. Only underscores"
             else:
-                # check if password is long enough
-                if len(password) < 6:
-                    return "The password should be at least 6 characters long"
-                elif password == cpassword:
-                    user_dict['username'] = username
-                    user_dict['password'] = password
-                    self.user_list.append(user_dict)
+                user_dict['username'] = username
+                user_dict['password'] = password
+                self.user_list.append(user_dict)
+                return "Registered successfully"
+
+    def login(self, username, password):
+        """
+        Args
+            email(string):user email
+            userpassword(string):password
+        Return
+            error msg or success msg
+        Purpose
+            Login users
+        """
+        for user in self.user_list:
+            if username == user['username']:
+                if password == user['password']:
+                    return "Login successful"
                 else:
                     return "The passwords do not match"
-            return "Successfully registered."
-
-        def sign_in(self, username, password):
-            """
-            Sign in registered users
-            Arguments:
-                username: string -- user name
-                password: string -- password
-            Returns:
-            Status message
-            """
-            for user in self.user_list:
-                if username == user['username']:
-                    if password == user['password']:
-                        return "Sign in successful"
-                    else:
-                        return "Passwords do not match"
-            return "User does not exist"
+        return "The user does not exist"
