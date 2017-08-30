@@ -86,12 +86,27 @@ def create_list():
 
     return render_template("create_shopping_list.html")
 
-@app.route('/edit_list/<name>')
+@app.route('/edit_list/<name>', methods=['GET', 'POST'])
 @login_required
 def edit_list(name):
     """
     View used to edit shopping lists
     """
+    user = session['username']
+    user_lists = list_object.show_lists(user)
+
+    if request.method == 'POST':
+        old_name = name
+        new_name = request.form['name']
+        description = request.form['description']
+        status = list_object.update_list(old_name, new_name, description, user)
+
+        if status == list_object.shopping_list:
+            response = "" + name + " shopping list successfully updated"
+            return render_template('dashboard.html', error=response, shoppinglist=status)
+        else:
+            return render_template('dashboard.html', error=status, shoppinglist=user_lists)
+    
     return render_template("edit_shopping_list.html")
 
 @app.route('/delete_list/<name>', methods=['POST'])
