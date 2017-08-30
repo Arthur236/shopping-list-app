@@ -107,7 +107,7 @@
                             <h3>Register</h3>
                         </div>
 
-                        <form method="POST" action="" class="col s12">
+                        <form method="POST" action="/register" class="col s12">
                             <div class="row">
                                 <div class="input-field col s12">
                                     <label for="username">Username</label>
@@ -137,6 +137,12 @@
                                 Already have an account? <a href="#" id="signin-link" class="formLink">Sign In</a>
                             </p>
                         </div>
+
+                        {% if resp %}
+                        <div class="col s12">
+                            <p class="red-text accent-2">{{ resp }}</p>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <div class="row landingForm carousel-cell">
@@ -144,7 +150,7 @@
                             <h3>Sign in</h3>
                         </div>
 
-                        <form method="POST" action="" class="col s12">
+                        <form method="POST" action="/dashboard" class="col s12">
                             <div class="row">
                                 <div class="input-field col s12">
                                     <label for="username2">Username</label>
@@ -161,11 +167,18 @@
                                     Sign In
                                 </button>
                                 </div>
+
                                 <div class="col s12">
                                     <p class="center-align ">
                                         Already have an account? <a href="#" id="signup-link" class="formLink">Register</a>
                                     </p>
                                 </div>
+
+                                {% if resp %}
+                                <div class="col s12">
+                                    <p class="red-text accent-2">{{ resp }}</p>
+                                </div>
+                                {% endif %}
                             </div>
                         </form>
                     </div>
@@ -214,9 +227,22 @@
                 scrollContainer: '#pageContent' // optional scroll container selector, otherwise use window
             });
             wow.init();
+
+            //Initialize tooltip
+            $('.tooltipped').tooltip({delay: 50});
         });
 
     </script>
+
+    {% if error %}
+        <script type="text/javascript">
+            let msg = "{{ error|safe }}";
+
+            $(document).ready(function () {
+                Materialize.toast(msg, 6000, 'rounded')
+            });
+        </script>
+    {% endif %}
 
 </body>
 

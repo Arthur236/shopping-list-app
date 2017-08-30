@@ -3,58 +3,43 @@
 {% block content %}
 <div class="content">
     <div class="cornerFab">
-        <div class="fixed-action-btn horizontal wow bounceInRight">
-            <a href="/create-list" class="btn-floating btn-large waves-effect waves-light red accent-2">
+        <div class="fixed-action-btn wow bounceInRight">
+            <a href="/create_list" class="btn-floating btn-large tooltipped waves-effect waves-light red accent-2" data-position="left" data-delay="100" data-tooltip="Add Shopping List">
             <i class="material-icons">add</i>
             </a>
-            <ul>
-                <li>
-                    <p>Add Shopping List</p>
-                </li>
-            </ul>
         </div>
     </div>
 
     <div class="dashboard">
         <div class="container wow fadeInRight">
             <div class="row">
-                <div class="col s12 m6 l6">
-
-                    <a href="">
-                        <div class="card white">
-                            <div class="card-content">
-                                <span class="card-title">Shopping List 1</span>
-                                <div class="fixed-action-btn horizontal">
-                                    <a class="btn-floating btn"><i class="material-icons">menu</i></a>
-                                    <ul>
-                                        <li><a href="#" class="btn-floating"><i class="material-icons">delete</i></a></li>
-                                        <li><a href="/edit-list" class="btn-floating"><i class="material-icons">edit</i></a></li>
-                                    </ul>
+                {% if shopping_lists %}
+                    {% for s_list in shopping_lists %}
+                    <div class="col s12 m6 l6">
+                        <a href="/view_list/{{ item['name'] }}">
+                            <div class="card white">
+                                <div class="card-content">
+                                    <span class="card-title">{{ item['name'] }}</span>
+                                    <div class="fixed-action-btn horizontal">
+                                        <a class="btn-floating btn"><i class="material-icons">menu</i></a>
+                                        <ul>
+                                            <li><a href="#" class="btn-floating"><i class="material-icons">delete</i></a></li>
+                                            <li><a href="/edit_list/{{ item['name'] }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <p>Gotta buy all this stuff.</p>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                    {% endfor %}
 
-                <div class="col s12 m6 l6">
-
-                    <a href="/view-list">
-                        <div class="card white">
-                            <div class="card-content">
-                                <span class="card-title">Shopping List 2</span>
-                                <div class="fixed-action-btn horizontal">
-                                    <a class="btn-floating btn"><i class="material-icons">menu</i></a>
-                                    <ul>
-                                        <li><a href="#" class="btn-floating"><i class="material-icons">delete</i></a></li>
-                                        <li><a href="/edit-list" class="btn-floating"><i class="material-icons">edit</i></a></li>
-                                    </ul>
-                                </div>
-                                <p>Gotta buy all this stuff.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                {% else %}
+                    <blockquote>
+                        <h3 class="grey-text">You currently have no shopping lists in your account.</h3>
+                        <br/>
+                        <h4 class="grey-text">Add some by pressing the + button</h4>
+                    </blockquote>
+                {% endif %}
             </div>
         </div>
     </div>
