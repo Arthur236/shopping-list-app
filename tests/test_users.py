@@ -1,5 +1,5 @@
 """
-Setting up our unit tests
+Test class for users.py
 """
 import unittest
 from app.users import UserOps
