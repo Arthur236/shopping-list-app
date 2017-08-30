@@ -23,7 +23,7 @@ class ShoppingList(object):
         users_list = [item for item in self.shopping_list if item['owner'] == username]
         return users_list
 
-    def create_list(self, username, name):
+    def create_list(self, username, name, description):
         """
         Creating a shopping lists
             Arguments:
@@ -47,7 +47,7 @@ class ShoppingList(object):
             return "The name cannot contain special characters"
         return self.show_lists(username)
 
-    def update_list(self, old_name, new_name, user):
+    def update_list(self, old_name, new_name, description, user):
         """
         Update shopping list name
             Arguments:
