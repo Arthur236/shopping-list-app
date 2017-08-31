@@ -1,23 +1,42 @@
 {% extends "base.html" %} 
 {% block title %}Shopping List{% endblock %}
-{% block navTitle %}Shopping List{% endblock %}
+{% block navTitle %}{{ list_name }} Shopping List{% endblock %}
 {% block content %}
     <div class="content">
+        <div class="cornerFab">
+            <div class="fixed-action-btn wow bounceInRight">
+                <a href="#item_modal" class="btn-floating btn-large tooltipped waves-effect waves-light red accent-2 modal-trigger" data-position="left" data-delay="100" data-tooltip="Add Item">
+                <i class="material-icons">add</i>
+                </a>
+            </div>
+        </div>
+
         <div class="container shoppingListCont wow fadeInLeft">
             <div class="row">
                 <div class="col s12 m6 l6">
-                    <div class="card white">
-                        <div class="card-content">
-                            <span class="card-title">Item 1</span>
-                            <div class="fixed-action-btn horizontal">
-                                <a class="btn-floating btn"><i class="material-icons">menu</i></a>
-                                <ul>
-                                    <li><a href="#" class="btn-floating"><i class="material-icons">delete</i></a></li>
-                                    <li><a href="/edit-item" class="btn-floating"><i class="material-icons">edit</i></a></li>
-                                </ul>
+                    {% if item_list %}
+                        {% for itl in item_list %}
+                            <div class="card white">
+                                <div class="card-content">
+                                    <span class="card-title">{{ itl }}</span>
+                                    <div class="fixed-action-btn horizontal">
+                                        <a class="btn-floating btn"><i class="material-icons">menu</i></a>
+                                        <ul>
+                                            <li><a href="#" class="btn-floating"><i class="material-icons">delete</i></a></li>
+                                            <li><a href="/edit_item/{{ list_name }}/{{ itl }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    
+                    {% else %}
+                        <blockquote>
+                            <h3 class="grey-text">The shopping list currently has no items.</h3>
+                            <br/>
+                            <h4 class="grey-text">Add some by pressing the + button</h4>
+                        </blockquote>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -27,22 +46,18 @@
     <div id="item_modal" class="modal">
         <div class="modal-content">
             <h4>Add Item</h4>
-            <form method="POST" action="" class="col s12">
+            <form method="POST" action="/add_item/{{ list_name }}" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="name">Name</label>
                         <input id="name" name="name" required="required" type="text" />
                     </div>
                 </div>
-
-                <div class="col s12 right-align">
-                    <button class="btn btn-large waves-effect waves-dark deep-purple" type="submit" name="add">
-                    Add
-                </button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="add" class="modal-action modal-close waves-effect waves-green btn-flat">Add</button>
             </form>
-        </div>
-        <div class="modal-footer">
+
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
         </div>
     </div>

@@ -29,7 +29,7 @@ class ListItems(object):
             Args
                 user: string
                 list_name: string
-                iten_name: string
+                item_name: string
             result
                 list of items
         """

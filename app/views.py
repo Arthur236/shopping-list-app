@@ -124,13 +124,32 @@ def delete_list(name):
     
     return render_template("dashboard.html", error=response, shopping_lists=status)
 
-@app.route('/view_list/<name>')
+@app.route('/view_list/<name>', methods=['GET'])
 @login_required
 def view_list(name):
     """
     View for displaying a particular shopping list and all its items
     """
-    return render_template("shopping_list.html")
+    user = session['username']
+    user_items = item_object.show_items(user, name)
+    # Get all items belonging to a particular list through list comprehension
+    list_items = [item['name'] for item in user_items if item['list'] == name]
+
+    return render_template("shopping_list.html", list_name=name, item_list=list_items)
+
+@app.route('/add_item/<list_name>', methods=['POST'])
+@login_required
+def add_item(list_name):
+    """
+    Add items to a list
+    """
+    user = session['username']
+
+    if request.method == 'POST':
+        item_name = request.form['name']
+        status = item_object.add_item(user, list_name, item_name)
+        if isinstance(status, list):
+            return view_list(list_name)
 
 @app.route('/edit_item/<list_name>/<item_name>')
 @login_required
