@@ -90,12 +90,9 @@ class ListItems(object):
                 del self.list_items[item]
                 break
 
-        deleted_list_items = []
         user_items = self.show_items(user, list_name)
 
-        for itm in user_items:
-            deleted_list_items.append(itm['name'])
-        return deleted_list_items
+        return user_items
 
     def delete_list_items(self, list_name):
         """

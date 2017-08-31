@@ -73,7 +73,7 @@ class TestCasesItems(unittest.TestCase):
         """
         self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
         result = self.list_data.delete_item('Item 1', "List 1", 'random')
-        self.assertEqual(result, ['Item 2'])
+        self.assertEqual(result, [{'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}])
 
     def test_delete_list_items(self):
         """

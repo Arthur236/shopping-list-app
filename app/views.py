@@ -46,9 +46,8 @@ def register():
         else:
             return render_template('index.html', resp=status)
 
-@app.route('/dashboard', methods=['GET', 'POST'])
-@login_required
-def dashboard():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     """
     Logs in user and renders the user dashboard
     """
@@ -59,11 +58,22 @@ def dashboard():
         status = user_object.login(username, password)
         if status == "Login successful":
             session['username'] = username
-            user_lists = list_object.show_lists(username)
 
-            return render_template('dashboard.html', shopping_lists=user_lists)
+            return render_template('dashboard.html')
         else:
             return render_template('index.html', resp=status)
+
+@app.route('/dashboard', methods=['GET'])
+@login_required
+def dashboard():
+    """
+    Logs in user and renders the user dashboard
+    """
+    user = session['username']
+    
+    user_lists = list_object.show_lists(user)
+
+    return render_template('dashboard.html', shopping_lists=user_lists)
 
 @app.route('/create_list', methods=['GET', 'POST'])
 @login_required
@@ -176,20 +186,31 @@ def edit_item(list_name, item_name):
 
     return render_template("shopping_list_items_edit.html", list_name=list_name, item_name=item_name)
 
-@app.route('/delete_item/<list_name>/<item_name>')
+@app.route('/delete_item/<list_name>/<item_name>', methods=['POST'])
 @login_required
 def delete_item(list_name, item_name):
     """
     Used for deleting shopping list items
     """
-    return render_template("shopping_list_items.html")
+    user = session['username']
+
+    if request.method == 'POST':
+        status = item_object.delete_item(item_name, user, list_name)
+        response = "" + item_name +" successfuly deleted"
+
+        if isinstance(status, list):
+            list_items = [item['name'] for item in status if item['list'] == list_name]
+            return render_template("shopping_list.html", list_name=list_name, item_list=status, item_name=item_name, error=response)
+        else:
+            user_items = item_object.show_items(user, list_name)
+            list_items = [item['name'] for item in user_items if item['list'] == list_name]
+            return render_template("shopping_list.html", list_name=list_name, item_list=list_items, item_name=item_name, error=response)
 
 @app.route('/logout')
-@login_required
 def logout():
     """
     Log out a user
     """
-    session.pop('logged_in', None)
+    session.pop('username', None)
     msg = "You were logged out"
-    return render_template("login.html", error=msg)
+    return render_template("index.html", error=msg)

@@ -13,31 +13,36 @@
 
         <div class="container shoppingListCont wow fadeInLeft">
             <div class="row">
-                <div class="col s12 m6 l6">
-                    {% if item_list %}
-                        {% for itl in item_list %}
-                            <div class="card white">
-                                <div class="card-content">
-                                    <span class="card-title">{{ itl }}</span>
-                                    <div class="fixed-action-btn horizontal">
-                                        <a class="btn-floating btn"><i class="material-icons">menu</i></a>
-                                        <ul>
-                                            <li><a href="#" class="btn-floating"><i class="material-icons">delete</i></a></li>
-                                            <li><a href="/edit_item/{{ list_name }}/{{ itl }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
-                                        </ul>
-                                    </div>
+                {% if item_list %}
+                {% for itl in item_list %}
+                    <div class="col s12 m6 l6">
+                        <div class="card white">
+                            <div class="card-content">
+                                <span class="card-title">{{ itl }}</span>
+                                <div class="fixed-action-btn horizontal">
+                                    <a class="btn-floating btn"><i class="material-icons">menu</i></a>
+                                    <ul>
+                                        <li>
+                                            <form method="POST" action="/delete_item/{{ list_name }}/{{ itl }}">
+                                                <button type="submit" class="btn-floating">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </form>
+                                        </li>
+                                        <li><a href="/edit_item/{{ list_name }}/{{ itl }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
+                                    </ul>
                                 </div>
                             </div>
-                        {% endfor %}
-                    
-                    {% else %}
-                        <blockquote>
-                            <h3 class="grey-text">The shopping list currently has no items.</h3>
-                            <br/>
-                            <h4 class="grey-text">Add some by pressing the + button</h4>
-                        </blockquote>
-                    {% endif %}
-                </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% else %}
+                    <blockquote>
+                        <h3 class="grey-text">The shopping list currently has no items.</h3>
+                        <br/>
+                        <h4 class="grey-text">Add some by pressing the + button</h4>
+                    </blockquote>
+                {% endif %}
             </div>
         </div>
     </div>
