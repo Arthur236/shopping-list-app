@@ -64,14 +64,14 @@ The application has been built using:
 
 ### Mockups
 
-* ![Landing page](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/landing_page.png)
+* [Landing page](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/landing_page.png)
 
-* ![User dashboard](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/user_dashboard.png)
+* [User dashboard](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/user_dashboard.png)
 
-* ![Shopping list creation](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_creation_ui.png)
+* [Shopping list creation](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_creation_ui.png)
 
-* ![Shopping list edit](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_edit_ui.png)
+* [Shopping list edit](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_edit_ui.png)
 
-* ![Shopping list item creation](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_item_addition_ui.png)
+* [Shopping list item creation](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_item_addition_ui.png)
 
-* ![Shopping list item edit](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_item_edit_ui.png)
+* [Shopping list item edit](https://github.com/Arthur236/shopping-list-app/blob/master/wireframes/shopping_list_item_edit_ui.png)
