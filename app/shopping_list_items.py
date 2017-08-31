@@ -33,7 +33,7 @@ class ListItems(object):
             result
                 list of items
         """
-        if re.match("^[a-zA-Z0-9 _]*$", item_name):
+        if re.match("^[a-zA-Z0-9 :_]*$", item_name):
             # Get users items
             users_items = self.show_items(user, list_name)
             for item in users_items:
@@ -60,7 +60,7 @@ class ListItems(object):
             Returns:
                 Status message
         """
-        if re.match("^[a-zA-Z0-9 _]*$", new_name):
+        if re.match("^[a-zA-Z0-9 :_]*$", new_name):
             user_items = self.show_items(user, list_name)
 
             for item in user_items:

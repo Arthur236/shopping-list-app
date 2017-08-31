@@ -151,13 +151,30 @@ def add_item(list_name):
         if isinstance(status, list):
             return view_list(list_name)
 
-@app.route('/edit_item/<list_name>/<item_name>')
+@app.route('/edit_item/<list_name>/<item_name>', methods=['GET', 'POST'])
 @login_required
 def edit_item(list_name, item_name):
     """
     View for editing shopping list items
     """
-    return render_template("shopping_list_items.html")
+    user = session['username']
+    if request.method == 'POST':
+        old_name = item_name
+        new_name = request.form['name']
+
+        status = item_object.update_item(old_name, new_name, list_name, user)
+        if isinstance(status, list):
+            response = "" + old_name + " successfully edited"
+            # Get edited list of the current shopping list
+            new_list = [item['name'] for item in status if item['list'] == list_name]
+            return render_template("shopping_list.html", item_list=new_list, list_name=list_name, error=response)
+        else:
+            # Get user's items in the current shopping list
+            user_items = item_object.show_items(user, list_name)
+            new_list = [item['name'] for item in user_items if item['list'] == list_name]
+            return render_template("shopping_list.html", item_list=new_list, list_name=list_name, error=status)
+
+    return render_template("shopping_list_items_edit.html", list_name=list_name, item_name=item_name)
 
 @app.route('/delete_item/<list_name>/<item_name>')
 @login_required
