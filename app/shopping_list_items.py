@@ -67,9 +67,10 @@ class ListItems(object):
                 if item['list'] == list_name:
                     if item['name'] != new_name and item['name'] == old_name:
                         item['name'] = new_name
-                    else:
-                        return "Item already exists"
-            return "Item edited successfully"
+
+                        return "Item edited successfully"
+                else:
+                    return "Item already exists"
         else:
             return "The name cannot contain special characters"
 

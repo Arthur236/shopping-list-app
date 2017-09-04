@@ -64,7 +64,7 @@ class TestCasesItems(unittest.TestCase):
         Test if name of item exists when trying to edit
         """
         self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}]
-        result = self.list_data.update_item('List 1', 'List 1', 'List 1', 'random')
+        result = self.list_data.update_item('Item 1', 'Item 1', 'List 1', 'random')
         self.assertEqual(result, "Item already exists")
 
     def test_item_delete(self):
