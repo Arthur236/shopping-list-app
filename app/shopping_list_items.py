@@ -65,9 +65,8 @@ class ListItems(object):
 
             for item in user_items:
                 if item['list'] == list_name:
-                    if item['name'] != new_name:
-                        if item['name'] == old_name:
-                            item['name'] = new_name
+                    if item['name'] != new_name and item['name'] == old_name:
+                        item['name'] = new_name
                     else:
                         return "Item already exists"
             return "Item edited successfully"
