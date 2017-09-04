@@ -175,6 +175,10 @@ def add_item(list_name):
             flash("Successfully created item " + item_name)
 
             return redirect(url_for('view_list', name=list_name))
+        else:
+            flash(status)
+
+            return redirect(url_for('view_list', name=list_name))
 
 @app.route('/edit_item/<list_name>/<item_name>', methods=['GET', 'POST'])
 @login_required
