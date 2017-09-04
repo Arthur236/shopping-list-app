@@ -22,10 +22,13 @@
                                 <div class="card-content">
                                     <span class="card-title">{{ s_list['name'] }}</span>
                                     <div class="fixed-action-btn horizontal">
-                                        <a class="btn-floating btn"><i class="material-icons">menu</i></a>
+                                        <a class="btn-floating btn tooltipped" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Menu"><i class="material-icons">menu</i></a>
                                         <ul>
-                                            <li><a href="#modal_{{s_list['name']}}" class="btn-floating modal-trigger"><i class="material-icons">delete</i></a></li>
-                                            <li><a href="/edit_list/{{ s_list['name'] }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
+                                            <li><a href="#modal_{{s_list['name']}}" class="btn-floating modal-trigger tooltipped" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Delete"><i class="material-icons">delete</i></a></li>
+
+                                            <li><a href="/edit_list/{{ s_list['name'] }}" class="btn-floating tooltipped" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Edit"><i class="material-icons">edit</i></a></li>
+
+                                            <li><a href="/view_list/{{ s_list['name'] }}" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Add Item"><i class="material-icons">add</i></a></li>
                                         </ul>
                                     </div>
                                     <p>{{ s_list['description'] }}</p>

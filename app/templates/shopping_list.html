@@ -20,16 +20,16 @@
                             <div class="card-content">
                                 <span class="card-title">{{ itl }}</span>
                                 <div class="fixed-action-btn horizontal">
-                                    <a class="btn-floating btn"><i class="material-icons">menu</i></a>
+                                    <a class="btn-floating btn tooltipped" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Menu"><i class="material-icons">menu</i></a>
                                     <ul>
                                         <li>
                                             <form method="POST" action="/delete_item/{{ list_name }}/{{ itl }}">
-                                                <button type="submit" class="btn-floating">
+                                                <button type="submit" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Delete">
                                                     <i class="material-icons">delete</i>
                                                 </button>
                                             </form>
                                         </li>
-                                        <li><a href="/edit_item/{{ list_name }}/{{ itl }}" class="btn-floating"><i class="material-icons">edit</i></a></li>
+                                        <li><a href="/edit_item/{{ list_name }}/{{ itl }}" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Edit"><i class="material-icons">edit</i></a></li>
                                     </ul>
                                 </div>
                             </div>
