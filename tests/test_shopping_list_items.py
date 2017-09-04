@@ -57,7 +57,7 @@ class TestCasesItems(unittest.TestCase):
         """
         self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}]
         result = self.list_data.update_item('Item 1', 'Item 2', 'List 1', "random")
-        self.assertEqual(result, [{'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}])
+        self.assertEqual(result, "Item edited successfully")
 
     def test_item_exists_on_edit(self):
         """

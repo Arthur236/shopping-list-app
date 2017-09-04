@@ -234,15 +234,19 @@
 
     </script>
 
-    {% if error %}
-        <script type="text/javascript">
-            let msg = "{{ error|safe }}";
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <script type="text/javascript">
+                let msg = "{{ message|safe }}";
 
-            $(document).ready(function () {
-                Materialize.toast(msg, 6000, 'rounded')
-            });
-        </script>
-    {% endif %}
+                $(document).ready(function () {
+                    Materialize.toast(msg, 6000, 'rounded')
+                });
+            </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
 </body>
 

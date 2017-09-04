@@ -29,7 +29,7 @@ def index():
     """
     return render_template("index.html")
 
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register', methods=['POST'])
 def register():
     """
     Register a user
@@ -42,11 +42,15 @@ def register():
         status = user_object.register(username, password, cpassword)
         if status == "Registered successfully":
             session['username'] = username
-            return render_template('index.html', error=status)
-        else:
-            return render_template('index.html', resp=status)
+            
+            flash(str(status))
 
-@app.route('/login', methods=['GET', 'POST'])
+            return redirect(url_for('dashboard'))
+        else:
+            flash(str(status))
+            return redirect(url_for('index'))
+
+@app.route('/login', methods=['POST'])
 def login():
     """
     Logs in user and renders the user dashboard
@@ -59,9 +63,12 @@ def login():
         if status == "Login successful":
             session['username'] = username
 
-            return render_template('dashboard.html')
+            flash(str(status))
+
+            return redirect(url_for('dashboard'))
         else:
-            return render_template('index.html', resp=status)
+            flash(str(status))
+            return redirect(url_for('index'))
 
 @app.route('/dashboard', methods=['GET'])
 @login_required
@@ -89,10 +96,12 @@ def create_list():
         status = list_object.create_list(user, list_name, description)
 
         if isinstance(status, list):
-            user_lists = list_object.show_lists(user)
-            return render_template('dashboard.html', shopping_lists=user_lists)
+            flash("" + list_name + " shopping list created successfully")
+
+            return redirect(url_for('dashboard'))
         else:
-            return render_template("create_shopping_list.html", error=status)
+            flash(status)
+            return redirect(url_for("create_list"))
 
     return render_template("create_shopping_list.html")
 
@@ -103,7 +112,6 @@ def edit_list(name):
     View used to edit shopping lists
     """
     user = session['username']
-    user_lists = list_object.show_lists(user)
 
     if request.method == 'POST':
         old_name = name
@@ -113,11 +121,15 @@ def edit_list(name):
 
         if status == list_object.shopping_list:
             response = "" + name + " shopping list successfully updated"
-            return render_template('dashboard.html', error=response, shoppinglist=status)
+            flash(response)
+
+            return redirect(url_for('dashboard'))
         else:
-            return render_template('dashboard.html', error=status, shoppinglist=user_lists)
+            flash(status)
+
+            return redirect(url_for('dashboard'))
     
-    return render_template("edit_shopping_list.html")
+    return render_template("edit_shopping_list.html", name=name)
 
 @app.route('/delete_list/<name>', methods=['POST'])
 @login_required
@@ -131,8 +143,9 @@ def delete_list(name):
         # Delete list items
         item_object.delete_list_items(name)
         response = "Successfuly deleted " + name + " shopping list"
-    
-    return render_template("dashboard.html", error=response, shopping_lists=status)
+        flash(response)
+
+    return redirect(url_for('dashboard'))
 
 @app.route('/view_list/<name>', methods=['GET'])
 @login_required
@@ -159,7 +172,9 @@ def add_item(list_name):
         item_name = request.form['name']
         status = item_object.add_item(user, list_name, item_name)
         if isinstance(status, list):
-            return view_list(list_name)
+            flash("Successfully created item " + item_name)
+
+            return redirect(url_for('view_list', name=list_name))
 
 @app.route('/edit_item/<list_name>/<item_name>', methods=['GET', 'POST'])
 @login_required
@@ -175,14 +190,13 @@ def edit_item(list_name, item_name):
         status = item_object.update_item(old_name, new_name, list_name, user)
         if isinstance(status, list):
             response = "" + old_name + " successfully edited"
-            # Get edited list of the current shopping list
-            new_list = [item['name'] for item in status if item['list'] == list_name]
-            return render_template("shopping_list.html", item_list=new_list, list_name=list_name, error=response)
+            flash(response)
+
+            return redirect(url_for('view_list', name=list_name))
         else:
-            # Get user's items in the current shopping list
-            user_items = item_object.show_items(user, list_name)
-            new_list = [item['name'] for item in user_items if item['list'] == list_name]
-            return render_template("shopping_list.html", item_list=new_list, list_name=list_name, error=status)
+            flash(status)
+
+            return redirect(url_for('view_list', name=list_name))
 
     return render_template("shopping_list_items_edit.html", list_name=list_name, item_name=item_name)
 
@@ -199,12 +213,13 @@ def delete_item(list_name, item_name):
         response = "" + item_name +" successfuly deleted"
 
         if isinstance(status, list):
-            list_items = [item['name'] for item in status if item['list'] == list_name]
-            return render_template("shopping_list.html", list_name=list_name, item_list=status, item_name=item_name, error=response)
+            flash(response)
+
+            return redirect(url_for('view_list', name=list_name))
         else:
-            user_items = item_object.show_items(user, list_name)
-            list_items = [item['name'] for item in user_items if item['list'] == list_name]
-            return render_template("shopping_list.html", list_name=list_name, item_list=list_items, item_name=item_name, error=response)
+            flash("Could not delete the item")
+
+            return redirect(url_for('view_list', name=list_name))
 
 @app.route('/logout')
 def logout():
@@ -212,5 +227,6 @@ def logout():
     Log out a user
     """
     session.pop('username', None)
-    msg = "You were logged out"
-    return render_template("index.html", error=msg)
+    flash("You were logged out")
+
+    return redirect(url_for('index'))
