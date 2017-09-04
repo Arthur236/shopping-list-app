@@ -9,6 +9,10 @@ A simple application to help you keep track of your shopping lists. It has been 
 * Creation of shopping lists
 * Addition of items to a shopping list
 
+## Demo
+
+To see the application in action, [click here](https://awesome-shopping-list.herokuapp.com)
+
 ## Getting Started
 
 ### Clone the respository
