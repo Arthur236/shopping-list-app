@@ -4,8 +4,7 @@ Code for rendering the views
 from functools import wraps
 from flask import request, session, redirect, url_for, render_template, flash
 
-from app import app, USER_OBJECT, LIST_OBJECT, ITEM_OBJECT
-
+from app import app, user_object, list_object, item_object
 
 def login_required(f):
     """
@@ -42,12 +41,11 @@ def register():
         password = request.form['password']
         cpassword = request.form['conf_password']
 
-        status = USER_OBJECT.register(username, password, cpassword)
+        status = user_object.register(username, password, cpassword)
         if status == "Registered successfully":
             session['username'] = username
 
             flash(str(status))
-
             return redirect(url_for('dashboard'))
 
         flash(str(status))
@@ -63,7 +61,7 @@ def login():
         username = request.form['username2']
         password = request.form['password2']
 
-        status = USER_OBJECT.login(username, password)
+        status = user_object.login(username, password)
         if status == "Login successful":
             session['username'] = username
 
@@ -83,7 +81,7 @@ def dashboard():
     """
     user = session['username']
 
-    user_lists = LIST_OBJECT.show_lists(user)
+    user_lists = list_object.show_lists(user)
 
     return render_template('dashboard.html', shopping_lists=user_lists)
 
@@ -99,7 +97,7 @@ def create_list():
     if request.method == 'POST':
         list_name = request.form['name']
         description = request.form['description']
-        status = LIST_OBJECT.create_list(user, list_name, description)
+        status = list_object.create_list(user, list_name, description)
 
         if isinstance(status, list):
             flash("" + list_name + " shopping list created successfully")
@@ -124,9 +122,9 @@ def edit_list(name):
         old_name = name
         new_name = request.form['name']
         description = request.form['description']
-        status = LIST_OBJECT.update_list(old_name, new_name, description, user)
+        status = list_object.update_list(old_name, new_name, description, user)
 
-        if status == LIST_OBJECT.shopping_list:
+        if status == list_object.shopping_list:
             response = "" + name + " shopping list successfully updated"
             flash(response)
 
@@ -146,9 +144,9 @@ def delete_list(name):
     """
     user = session['username']
     if request.method == 'POST':
-        LIST_OBJECT.delete_list(name, user)
+        list_object.delete_list(name, user)
         # Delete list items
-        ITEM_OBJECT.delete_list_items(name)
+        item_object.delete_list_items(name)
         response = "Successfuly deleted " + name + " shopping list and its items"
         flash(response)
 
@@ -162,7 +160,7 @@ def view_list(name):
     View for displaying a particular shopping list and all its items
     """
     user = session['username']
-    user_items = ITEM_OBJECT.show_items(user, name)
+    user_items = item_object.show_items(user, name)
     # Get all items belonging to a particular list through list comprehension
     list_items = [item['name'] for item in user_items if item['list'] == name]
 
@@ -179,7 +177,7 @@ def add_item(list_name):
 
     if request.method == 'POST':
         item_name = request.form['name']
-        status = ITEM_OBJECT.add_item(user, list_name, item_name)
+        status = item_object.add_item(user, list_name, item_name)
         if isinstance(status, list):
             flash("Successfully created item " + item_name)
 
@@ -200,7 +198,7 @@ def edit_item(list_name, item_name):
         old_name = item_name
         new_name = request.form['name']
 
-        status = ITEM_OBJECT.update_item(old_name, new_name, list_name, user)
+        status = item_object.update_item(old_name, new_name, list_name, user)
         if isinstance(status, list):
             response = "" + old_name + " successfully edited"
             flash(response)
@@ -224,7 +222,7 @@ def delete_item(list_name, item_name):
     user = session['username']
 
     if request.method == 'POST':
-        status = ITEM_OBJECT.delete_item(item_name, user, list_name)
+        status = item_object.delete_item(item_name, user, list_name)
         response = "" + item_name + " successfuly deleted"
 
         if isinstance(status, list):

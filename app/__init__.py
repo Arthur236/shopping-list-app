@@ -11,9 +11,11 @@ from app import users, shopping_lists, shopping_list_items
 app = Flask(__name__, instance_relative_config=True)
 app.secret_key = 'knowledge_comes_but_wisdom_lingers'
 
-USER_OBJECT = users.UserOps()
-LIST_OBJECT = shopping_lists.ShoppingList()
-ITEM_OBJECT = shopping_list_items.ListItems()
+user_object = users.UserOps()
+list_object = shopping_lists.ShoppingList()
+item_object = shopping_list_items.ListItems()
+
+from app import views
 
 # Load the config file
 app.config.from_object('config')

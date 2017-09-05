@@ -68,11 +68,11 @@ class ListItems(object):
             user_items = self.show_items(user, list_name)
 
             for item in user_items:
-                if item['list'] == list_name:
-                    if item['name'] != new_name and item['name'] == old_name:
-                        item['name'] = new_name
+                if item['list'] == list_name and item['name'] != new_name and \
+                item['name'] == old_name:
+                    item['name'] = new_name
 
-                        return "Item edited successfully"
+                    return "Item edited successfully"
                 else:
                     return "Item already exists"
         else:

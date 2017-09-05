@@ -38,8 +38,7 @@ class UserTests(unittest.TestCase):
         """
         Test if password matches confirm password
         """
-        result = self.user.register(
-            "random", "pass123", "pass1234")
+        result = self.user.register("random", "pass123", "pass1234")
         self.assertEqual(result, "The passwords do not match")
 
     def test_pwd_length(self):
