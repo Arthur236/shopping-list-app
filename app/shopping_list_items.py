@@ -3,6 +3,7 @@ Code for shopping list items
 """
 import re
 
+
 class ListItems(object):
     """
     Contains functions for CRUD operations
@@ -20,7 +21,9 @@ class ListItems(object):
             Returns:
                 List of items in a shopping list
         """
-        user_items = [item for item in self.list_items if item['owner'] == user and item['list'] == list_name]
+        user_items = \
+            [item for item in self.list_items if item['owner'] \
+            == user and item['list'] == list_name]
         return user_items
 
     def add_item(self, user, list_name, item_name):
@@ -33,21 +36,22 @@ class ListItems(object):
             result
                 list of items
         """
-        if re.match("^[a-zA-Z0-9 :_]*$", item_name):
-            # Get users items
-            users_items = self.show_items(user, list_name)
-            for item in users_items:
-                if item['name'] == item_name:
-                    return "Item already exists"
-            activity_dict = {
-                'owner': user,
-                'list': list_name,
-                'name': item_name
-            }
-            self.list_items.append(activity_dict)
-            return self.show_items(user, list_name)
-        else:
+        if not re.match("^[a-zA-Z0-9 :_]*$", item_name):
             return "Name cannot contain special characters"
+
+        # Get users items
+        users_items = self.show_items(user, list_name)
+        for item in users_items:
+            if item['name'] == item_name:
+                return "Item already exists"
+        activity_dict = {
+            'owner': user,
+            'list': list_name,
+            'name': item_name
+        }
+        self.list_items.append(activity_dict)
+
+        return self.show_items(user, list_name)
 
     def update_item(self, old_name, new_name, list_name, user):
         """
@@ -100,7 +104,6 @@ class ListItems(object):
             Arguments:
                 list_name: string
         """
-        for i in range(len(self.list_items)):
+        for i in range(len(self.list_items) - 1):
             if self.list_items[i]['list'] == list_name:
                 del self.list_items[i]
-                break

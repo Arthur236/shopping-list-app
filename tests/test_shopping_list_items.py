@@ -25,7 +25,9 @@ class TestCasesItems(unittest.TestCase):
         """
         Test if list item exists
         """
-        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 2', 'name': 'Item 2'}]
+        self.list_data.list_items = \
+        [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, \
+        {'owner': 'random', 'list': 'List 2', 'name': 'Item 2'}]
         result = self.list_data.add_item("random", "List 1", "Item 1")
         self.assertEqual(result, "Item already exists")
 
@@ -40,7 +42,9 @@ class TestCasesItems(unittest.TestCase):
         """
         Test if item belongs to owner
         """
-        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random2', 'list': 'List 2', 'name': 'Item 1'}]
+        self.list_data.list_items = \
+        [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, \
+        {'owner': 'random2', 'list': 'List 2', 'name': 'Item 1'}]
         result = self.list_data.show_items("random", "List 1")
         self.assertEqual(result, [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}])
 
@@ -71,7 +75,9 @@ class TestCasesItems(unittest.TestCase):
         """
         Test if item is deleted successfully
         """
-        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
+        self.list_data.list_items = \
+        [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, \
+        {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
         result = self.list_data.delete_item('Item 1', "List 1", 'random')
         self.assertEqual(result, [{'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}])
 
@@ -79,11 +85,12 @@ class TestCasesItems(unittest.TestCase):
         """
         Test if a deleting a list deletes it's items
         """
-        self.list_data.list_items = [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
+        self.list_data.list_items = \
+        [{'owner': 'random', 'list': 'List 1', 'name': 'Item 1'}, \
+        {'owner': 'random', 'list': 'List 1', 'name': 'Item 2'}]
         res = self.list_data.delete_list_items('List 1')
         self.assertEqual(res, None)
 
 
 if __name__ == '__main__':
     unittest.main()
-

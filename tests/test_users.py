@@ -49,7 +49,7 @@ class UserTests(unittest.TestCase):
         result = self.user.register("random", "pass", "pass")
         self.assertEqual(result, "The password should be at least 6 characters long")
 
-    def test_if_username_has_special_chars(self):
+    def test_special_chars_in_username(self):
         """
         Test to see if a username has special characters except underscores
         """
