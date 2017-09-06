@@ -4,6 +4,7 @@ User class
 
 import re
 
+
 class UserOps(object):
     """
     Code to handle registration and log in of users

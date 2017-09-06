@@ -6,6 +6,7 @@ from flask import request, session, redirect, url_for, render_template, flash
 
 from app import app, user_object, list_object, item_object
 
+
 def login_required(f):
     """
     Checks if a user is logged in

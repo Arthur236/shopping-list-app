@@ -104,6 +104,7 @@ class ListItems(object):
             Arguments:
                 list_name: string
         """
-        for i in range(len(self.list_items) - 1):
+        # Iterate the list in reverse order
+        for i in range(len(self.list_items) - 1, -1, -1):
             if self.list_items[i]['list'] == list_name:
                 del self.list_items[i]
