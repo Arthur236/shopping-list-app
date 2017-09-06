@@ -68,13 +68,16 @@ class ListItems(object):
             user_items = self.show_items(user, list_name)
 
             for item in user_items:
-                if item['list'] == list_name and item['name'] != new_name and \
-                item['name'] == old_name:
-                    item['name'] = new_name
-
-                    return "Item edited successfully"
-                else:
-                    return "Item already exists"
+                if item['list'] == list_name:
+                    if item['name'] != new_name:
+                        if item['name'] == old_name:
+                            del item['name']
+                            update_dict = {'name': new_name}
+                            item.update(update_dict)
+                            print(item['name'])
+                            return "Item edited successfully"
+                    else:
+                        return "Item already exists"
         else:
             return "The name cannot contain special characters"
 
