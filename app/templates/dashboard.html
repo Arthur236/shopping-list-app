@@ -44,11 +44,12 @@
                             <p>Are you sure you want to delete this shopping list?</p>
                         </div>
                         <div class="modal-footer">
-                            <form method="POST" action="/delete_list/{{ s_list['name'] }}">
+                            <form method="POST" action="/delete_list/{{ s_list['name'] }}" class="left">
                                 <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="add">
                                         Delete
                                 </button>
                             </form>
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                         </div>
                     </div>
                     {% endfor %}

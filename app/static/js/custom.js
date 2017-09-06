@@ -1,8 +1,8 @@
 //Preloader background timeout
 document.addEventListener("DOMContentLoaded", function () {
-	$('.preloaderBackground').delay(1800).fadeOut('slow');
+	$('.preloaderBackground').delay(1000).fadeOut('slow');
 
 	$('.preloaderWrapper')
-		.delay(1800)
+		.delay(1000)
 		.fadeOut();
 });
