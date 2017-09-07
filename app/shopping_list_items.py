@@ -61,7 +61,7 @@ class ListItems(object):
 
         return self.show_items(user, list_name)
 
-    def update_item(self, old_name, new_name, list_name, user):
+    def update_item(self, old_name, new_name, list_name, user, quantity, price):
         """
         Edit list items
             Arguments:
@@ -72,22 +72,29 @@ class ListItems(object):
             Returns:
                 Status message
         """
-        if re.match("^[a-zA-Z0-9 :_]*$", new_name):
-            user_items = self.show_items(user, list_name)
-
-            for item in user_items:
-                if item['list'].lower() == list_name.lower():
-                    if item['name'].lower() != new_name.lower():
-                        if item['name'].lower() == old_name.lower():
-                            del item['name']
-                            update_dict = {'name': new_name}
-                            item.update(update_dict)
-                            print(item['name'])
-                            return "Item edited successfully"
-                    else:
-                        return "Item already exists"
-        else:
+        if not re.match("^[a-zA-Z0-9 :_]*$", new_name):
             return "The name cannot contain special characters"
+
+        if not quantity.isnumeric():
+            return "Quantity should be an integer"
+
+        if not price.isdigit() or not price.isdecimal():
+            return "Price should be a number greater than 0"
+
+        user_items = self.show_items(user, list_name)
+
+        for item in user_items:
+            if item['list'].lower() == list_name.lower():
+                if item['name'].lower() != new_name.lower():
+                    if item['name'].lower() == old_name.lower():
+                        del item['name']
+                        del item['quantity']
+                        del item['price']
+                        update_dict = {'name': new_name, 'quantity': quantity, 'price': price}
+                        item.update(update_dict)
+                        return "Item edited successfully"
+                else:
+                    return "Item already exists"
 
     def delete_item(self, item_name, list_name, user):
         """

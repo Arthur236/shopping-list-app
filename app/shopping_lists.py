@@ -3,6 +3,7 @@ Code to handle CRUD operations of shopping lists
 """
 import re
 
+
 class ShoppingList(object):
     """
     Handles CRUD
@@ -39,7 +40,7 @@ class ShoppingList(object):
 
             # Check if shopping list exists
             for item in user_lists:
-                if name == item['name']:
+                if name.lower() == item['name'].lower():
                     return "That shopping list already exists."
             shopping_dict = {'owner': username, 'name': name, 'description': description}
             self.shopping_list.append(shopping_dict)
@@ -61,9 +62,9 @@ class ShoppingList(object):
             users_lists = self.show_lists(user)
 
             for item in users_lists:
-                if new_name == item['name']:
+                if new_name.lower() == item['name'].lower():
                     return "That name is already in use"
-                elif old_name == item['name']:
+                elif old_name.lower() == item['name'].lower():
                     item['name'] = new_name
                     item['description'] = description
         else:

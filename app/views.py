@@ -201,8 +201,11 @@ def edit_item(list_name, item_name):
     if request.method == 'POST':
         old_name = item_name
         new_name = request.form['name']
+        quantity = request.form['quantity']
+        price = request.form['price']
 
-        status = item_object.update_item(old_name, new_name, list_name, user)
+        status = item_object.update_item(old_name, new_name, list_name, user, quantity, price)
+
         if isinstance(status, list):
             response = "" + old_name + " successfully edited"
             flash(response)
