@@ -43,9 +43,9 @@ class ShoppingList(object):
                     return "That shopping list already exists."
             shopping_dict = {'owner': username, 'name': name, 'description': description}
             self.shopping_list.append(shopping_dict)
-        else:
-            return "The name cannot contain special characters"
-        return self.show_lists(username)
+            return self.show_lists(username)
+
+        return "The name cannot contain special characters"
 
     def update_list(self, old_name, new_name, description, user):
         """
