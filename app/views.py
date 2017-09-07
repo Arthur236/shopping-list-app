@@ -163,7 +163,7 @@ def view_list(name):
     user = session['username']
     user_items = item_object.show_items(user, name)
     # Get all items belonging to a particular list through list comprehension
-    list_items = [item['name'] for item in user_items if item['list'] == name]
+    list_items = [item for item in user_items if item['list'] == name]
 
     return render_template("shopping_list.html", list_name=name, item_list=list_items)
 
@@ -178,7 +178,10 @@ def add_item(list_name):
 
     if request.method == 'POST':
         item_name = request.form['name']
-        status = item_object.add_item(user, list_name, item_name)
+        quantity = request.form['quantity']
+        price = request.form['price']
+
+        status = item_object.add_item(user, list_name, item_name, quantity, price)
         if isinstance(status, list):
             flash("Successfully created item " + item_name)
 

@@ -26,7 +26,7 @@ class ListItems(object):
             == user and item['list'] == list_name]
         return user_items
 
-    def add_item(self, user, list_name, item_name):
+    def add_item(self, user, list_name, item_name, quantity, price):
         """
         Add items to a shopping list
             Args
@@ -39,15 +39,23 @@ class ListItems(object):
         if not re.match("^[a-zA-Z0-9 :_]*$", item_name):
             return "Name cannot contain special characters"
 
+        if not quantity.isnumeric():
+            return "Quantity should be an integer"
+
+        if not price.isdigit() or not price.isdecimal():
+            return "Price should be a number greater than 0"
+
         # Get users items
         users_items = self.show_items(user, list_name)
         for item in users_items:
-            if item['name'] == item_name:
+            if item['name'].lower() == item_name.lower():
                 return "Item already exists"
         activity_dict = {
             'owner': user,
             'list': list_name,
-            'name': item_name
+            'name': item_name,
+            'quantity': quantity,
+            'price': price
         }
         self.list_items.append(activity_dict)
 
@@ -68,9 +76,9 @@ class ListItems(object):
             user_items = self.show_items(user, list_name)
 
             for item in user_items:
-                if item['list'] == list_name:
-                    if item['name'] != new_name:
-                        if item['name'] == old_name:
+                if item['list'].lower() == list_name.lower():
+                    if item['name'].lower() != new_name.lower():
+                        if item['name'].lower() == old_name.lower():
                             del item['name']
                             update_dict = {'name': new_name}
                             item.update(update_dict)

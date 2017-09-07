@@ -16,17 +16,22 @@
         <div class="container shoppingListCont wow fadeInLeft">
             <div class="row">
                 <div class="col s12 m12 l12">
+                <h3>Shopping List Items</h3>
                     {% if item_list %}
                         <table class="highlight">
                             <thead>
                             <tr>
-                                <th>Shopping List Items</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for itl in item_list %}
                                 <tr>
-                                    <td>{{ itl }}</td>
+                                    <td>{{ itl['name'] }}</td>
+                                    <td>{{ itl['quantity'] }}</td>
+                                    <td>{{ itl['price'] }}</td>
                                     <td>
                                         <a href="/edit_item/{{ list_name }}/{{ itl }}" class="btn-floating tooltipped orange"
                                            data-position="top" data-delay="100" data-tooltip="Edit"><i
@@ -62,6 +67,14 @@
                         <div class="input-field col s12">
                             <label for="name">Name</label>
                             <input id="name" name="name" required="required" type="text"/>
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="quantity">Quantity</label>
+                            <input id="quantity" name="quantity" required="required" type="number"/>
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="price">Unit Price</label>
+                            <input id="price" name="price" required="required" type="number"/>
                         </div>
                     </div>
                     <div class="modal-footer">
