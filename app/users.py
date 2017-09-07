@@ -20,6 +20,7 @@ class UserOps(object):
         Arguments:
             username: string
             password: string
+            cpassword: string
         Returns:
             Status message
         """

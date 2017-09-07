@@ -111,6 +111,9 @@
             $('.modal').modal();
         });
     </script>
+    
+    {% block scripts %}
+    {% endblock %}
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}

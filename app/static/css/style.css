@@ -7,16 +7,16 @@ html, body {
 }
 
 .preloaderBackground {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: rgba(27, 23, 34, 1);
-	position: fixed;
-	z-index: 100;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(27, 23, 34, 1);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 /* label underline focus color */
@@ -59,13 +59,13 @@ html, body {
 }
 
 .line1 {
-    -vendor-animation-delay: 2s;
-    animation-delay: 2s;
+    -vendor-animation-delay: 1s;
+    animation-delay: 1s;
 }
 
 .line2 {
-    -vendor-animation-delay: 3s;
-    animation-delay: 3s;
+    -vendor-animation-delay: 1.5s;
+    animation-delay: 1.5s;
 }
 
 .formsContainer {
@@ -75,15 +75,15 @@ html, body {
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
-    -vendor-animation-delay: 4s;
-    animation-delay: 4s;
+    -vendor-animation-delay: 2s;
+    animation-delay: 2s;
 }
 
 @media only screen and (max-width: 992px) {
     .formsContainer {
         margin-top: 50px;
-        -vendor-animation-delay: 4s;
-        animation-delay: 4s;
+        -vendor-animation-delay: 2s;
+        animation-delay: 2s;
     }
 }
 
@@ -136,8 +136,8 @@ html, body {
 }
 
 .cornerFab .fixed-action-btn {
-    -vendor-animation-delay: 4s;
-    animation-delay: 4s;
+    -vendor-animation-delay: 1.5s;
+    animation-delay: 1.5s;
 }
 
 .cornerFab .fixed-action-btn .btn-floating {
@@ -168,12 +168,21 @@ html, body {
 }
 
 .container {
-    -vendor-animation-delay: 3s;
-    animation-delay: 3s;
+    -vendor-animation-delay: 1s;
+    animation-delay: 1s;
 }
 
 .card-title {
     color: #673AB7;
+}
+
+.card .card-content p {
+    text-overflow: ellipsis;
+    display: block;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: solid 1px #000;
 }
 
 .card-content .fixed-action-btn {
@@ -204,9 +213,9 @@ html, body {
 /***************************** add_shopping_list *****************************/
 
 .shoppingListCont {
-    -vendor-animation-delay: 3s;
-    animation-delay: 3s;
-    padding-top: 20px; 
+    -vendor-animation-delay: 1s;
+    animation-delay: 1s;
+    padding-top: 20px;
 }
 
 #listItems div span a {

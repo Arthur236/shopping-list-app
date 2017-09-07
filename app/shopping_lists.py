@@ -30,6 +30,7 @@ class ShoppingList(object):
             Arguments:
                 name: string
                 username: string
+                description: string
             Returns:
                 Shopping list
         """
@@ -54,6 +55,7 @@ class ShoppingList(object):
             Arguments:
                 old_name: string
                 new_name: string
+                description: string
                 user: string
             Returns:
             Status message
@@ -62,11 +64,14 @@ class ShoppingList(object):
             users_lists = self.show_lists(user)
 
             for item in users_lists:
-                if new_name.lower() == item['name'].lower():
+                if item['name'].lower() != new_name.lower():
+                    if item['name'].lower() == old_name.lower():
+                        del item['name']
+                        del item['description']
+                        edit_dict = {'name': new_name, 'description': description}
+                        item.update(edit_dict)
+                else:
                     return "That name is already in use"
-                elif old_name.lower() == item['name'].lower():
-                    item['name'] = new_name
-                    item['description'] = description
         else:
             return "The name cannot contain special characters"
         return self.show_lists(user)

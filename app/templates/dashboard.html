@@ -1,69 +1,108 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block navTitle %}My Shopping Lists{% endblock %}
 {% block content %}
-<div class="content">
-    <div class="cornerFab">
-        <div class="fixed-action-btn wow bounceInRight">
-            <a href="/create_list" class="btn-floating btn-large tooltipped waves-effect waves-light red accent-2" data-position="left" data-delay="100" data-tooltip="Add Shopping List">
-            <i class="material-icons">add</i>
-            </a>
+    <div class="content">
+        <div class="cornerFab">
+            <div class="fixed-action-btn wow bounceInRight">
+                <a href="/create_list" class="btn-floating btn-large tooltipped waves-effect waves-light red accent-2"
+                   data-position="left" data-delay="100" data-tooltip="Add Shopping List">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
         </div>
-    </div>
 
-    <div class="dashboard">
-        <div class="container wow fadeInRight">
-            <div class="row">
-                {% if shopping_lists %}
-                    {% for s_list in shopping_lists %}
-                    <div class="col s12 m6 l6">
-                        <a href="/view_list/{{ s_list['name'] }}">
-                            <div class="card white">
-                                <div class="card-content">
-                                    <span class="card-title">{{ s_list['name'] }}</span>
-                                    <div class="fixed-action-btn horizontal">
-                                        <a class="btn-floating btn tooltipped" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Menu"><i class="material-icons">menu</i></a>
-                                        <ul>
-                                            <li><a href="#modal_{{s_list['name']}}" class="btn-floating modal-trigger tooltipped" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Delete"><i class="material-icons">delete</i></a></li>
+        <div class="dashboard">
+            <div class="container wow fadeInRight">
+                <div class="row">
+                    {% if shopping_lists %}
+                        {% for s_list in shopping_lists %}
+                            <div class="col s12 m6 l6">
+                                <a href="/view_list/{{ s_list['name'] }}">
+                                    <div class="card white">
+                                        <div class="card-content">
+                                            <span class="card-title">{{ s_list['name'] }}</span>
+                                            <div class="fixed-action-btn horizontal">
+                                                <a class="btn-floating btn tooltipped" class="btn-floating tooltipped"
+                                                   data-position="top" data-delay="100" data-tooltip="Menu"><i
+                                                        class="material-icons">menu</i></a>
+                                                <ul>
+                                                    <li><a href="#modal_{{ s_list['name'] }}"
+                                                           class="btn-floating modal-trigger tooltipped"
+                                                           class="btn-floating tooltipped" data-position="top"
+                                                           data-delay="100" data-tooltip="Delete"><i
+                                                            class="material-icons">delete</i></a></li>
 
-                                            <li><a href="/edit_list/{{ s_list['name'] }}" class="btn-floating tooltipped" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Edit"><i class="material-icons">edit</i></a></li>
+                                                    <li><a href="/edit_list/{{ s_list['name'] }}"
+                                                           class="btn-floating tooltipped"
+                                                           class="btn-floating tooltipped" data-position="top"
+                                                           data-delay="100" data-tooltip="Edit"><i
+                                                            class="material-icons">edit</i></a></li>
 
-                                            <li><a href="/view_list/{{ s_list['name'] }}" class="btn-floating tooltipped" data-position="top" data-delay="100" data-tooltip="Add Item"><i class="material-icons">add</i></a></li>
-                                        </ul>
+                                                    <li><a href="/view_list/{{ s_list['name'] }}"
+                                                           class="btn-floating tooltipped" data-position="top"
+                                                           data-delay="100" data-tooltip="Add Item"><i
+                                                            class="material-icons">add</i></a></li>
+                                                </ul>
+                                            </div>
+                                            <p class="truncateTxt">
+                                                {% if s_list['description'] %}
+                                                    {{ s_list['description'] }}
+                                                {% else %}
+                                                    <i>No description added</i>
+                                                {% endif %}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <p>{{ s_list['description'] }}</p>
+                                </a>
+                            </div>
+
+                            <!-- Delete modal -->
+                            <div id="modal_{{ s_list['name'] }}" class="modal">
+                                <div class="modal-content">
+                                    <h4>Delete {{ s_list['name'] }}</h4>
+                                    <p>Are you sure you want to delete this shopping list?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form method="POST" action="/delete_list/{{ s_list['name'] }}" class="left">
+                                        <button class="modal-action modal-close waves-effect waves-green btn-flat"
+                                                type="submit" name="add">
+                                            Delete
+                                        </button>
+                                    </form>
+                                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        {% endfor %}
 
-                    <!-- Delete modal -->
-                    <div id="modal_{{s_list['name']}}" class="modal">
-                        <div class="modal-content">
-                            <h4>Delete {{ s_list['name'] }}</h4>
-                            <p>Are you sure you want to delete this shopping list?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <form method="POST" action="/delete_list/{{ s_list['name'] }}" class="left">
-                                <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="add">
-                                        Delete
-                                </button>
-                            </form>
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                {% else %}
-                    <blockquote>
-                        <h3 class="grey-text">You currently have no shopping lists in your account.</h3>
-                        <br/>
-                        <h4 class="grey-text">Add some by pressing the + button</h4>
-                    </blockquote>
-                {% endif %}
+                    {% else %}
+                        <blockquote>
+                            <h3 class="grey-text">You currently have no shopping lists in your account.</h3>
+                            <br/>
+                            <h4 class="grey-text">Add some by pressing the + button</h4>
+                        </blockquote>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        function truncateText(selector, maxLength) {
+            var element = document.querySelector(selector),
+                truncated = element.innerText;
+
+            if (truncated.length > maxLength) {
+                truncated = truncated.substr(0, maxLength) + '...';
+            }
+            return truncated;
+        }
+
+        document.querySelector('p').innerText = truncateText('p', 40);
+    </script>
 
 {% endblock %}
