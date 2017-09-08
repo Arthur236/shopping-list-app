@@ -19,8 +19,8 @@ def login_required(f):
         if "username" in session:
             return f(*args, **kwargs)
 
-        msg = "You need to be logged in"
-        return render_template("index.html", error=msg)
+        flash("You need to be logged in")
+        return redirect(url_for('index'))
     return verified
 
 
