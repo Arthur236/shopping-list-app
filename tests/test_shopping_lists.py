@@ -63,22 +63,22 @@ class ShoppingListTests(unittest.TestCase):
         """
         Test if list is correctly updated
         """
-        self.shopping_list_data.shopping_list = \
-        [{'owner': 'random', 'name': 'Awesome List', 'description': 'Brief description'}]
-        result = self.shopping_list_data.update_list\
-        ('Awesome List', 'Awesome List 2', 'Brief description', "random")
-        self.assertEqual(result, \
-        [{'owner': 'random', 'name': 'Awesome List 2', 'description': 'Brief description'}])
+        self.shopping_list_data.shopping_list = [{'owner': 'random', 'name': 'Awesome List',
+                                                  'description': 'Brief description'}]
+        result = self.shopping_list_data.update_list('Awesome List', 'Awesome List 2',
+                                                     'Brief description', 'random')
+        self.assertEqual(result,
+                         [{'owner': 'random', 'name': 'Awesome List 2', 'description': 'Brief description'}])
 
     def test_update_existing_list(self):
         """
-        Test if a list with a similar name is updated or name
+        Test if a list with a similar name is updated or not
         """
         self.shopping_list_data.shopping_list =\
          [{'owner': 'random', 'name': 'List 1', 'description': 'Brief description'}, \
          {'owner': 'random', 'name': 'List 2', 'description': 'Brief description'}]
         result = self.shopping_list_data.update_list\
-        ('List 1', 'List 2', 'Brief decription', 'random')
+            ('List 1', 'List 2', 'Brief description', 'random')
         self.assertEqual(result, "That name is already in use")
 
     def test_delete_list(self):

@@ -60,20 +60,26 @@ class ShoppingList(object):
             Returns:
             Status message
         """
-        if re.match("^[a-zA-Z0-9 _]*$", new_name):
-            users_lists = self.show_lists(user)
-
-            for item in users_lists:
-                if item['name'].lower() != new_name.lower():
-                    if item['name'].lower() == old_name.lower():
-                        del item['name']
-                        del item['description']
-                        edit_dict = {'name': new_name, 'description': description}
-                        item.update(edit_dict)
-                else:
-                    return "That name is already in use"
-        else:
+        if not re.match("^[a-zA-Z0-9 _]*$", new_name):
             return "The name cannot contain special characters"
+
+        users_lists = self.show_lists(user)
+
+        for item in users_lists:
+            if old_name.lower() != new_name.lower() and item['name'].lower() != old_name.lower():
+                return "That name is already in use"
+
+            elif old_name.lower() == new_name.lower() and item['name'].lower() == old_name.lower():
+                del item['description']
+                edit_dict = {'description': description}
+                item.update(edit_dict)
+
+            elif item['name'].lower() != new_name.lower() and item['name'].lower() == old_name.lower():
+                del item['name']
+                del item['description']
+                edit_dict = {'name': new_name, 'description': description}
+                item.update(edit_dict)
+
         return self.show_lists(user)
 
     def delete_list(self, name, user):
@@ -94,4 +100,3 @@ class ShoppingList(object):
         # Get users shopping list
         users_lists = self.show_lists(user)
         return users_lists
-    

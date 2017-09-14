@@ -87,7 +87,7 @@ def dashboard():
     return render_template('dashboard.html', shopping_lists=user_lists)
 
 
-@app.route('/create_list', methods=['GET', 'POST'])
+@app.route('/create_list', methods=['POST'])
 @login_required
 def create_list():
     """
@@ -108,8 +108,6 @@ def create_list():
         flash(status)
         return redirect(url_for("create_list"))
 
-    return render_template("create_shopping_list.html")
-
 
 @app.route('/edit_list/<name>', methods=['GET', 'POST'])
 @login_required
@@ -118,6 +116,13 @@ def edit_list(name):
     View used to edit shopping lists
     """
     user = session['username']
+    description = ''
+
+    user_lists = list_object.show_lists(user)
+
+    for s_list in user_lists:
+        if s_list['name'] == name:
+            description = s_list['description']
 
     if request.method == 'POST':
         old_name = name
@@ -134,7 +139,7 @@ def edit_list(name):
         flash(status)
         return redirect(url_for('dashboard'))
 
-    return render_template("edit_shopping_list.html", name=name)
+    return render_template("edit_shopping_list.html", name=name, description=description)
 
 
 @app.route('/delete_list/<name>', methods=['POST'])

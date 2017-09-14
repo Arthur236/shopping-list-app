@@ -8,7 +8,7 @@
             <div class="col s12 m7 l7">
                 <h3>Edit Shopping List</h3>
 
-                <form method="POST" action="" class="col s12">
+                <form method="POST" action="/edit_list/{{ name }}" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="name">Name</label>
@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <label for="description">Description</label>
-                            <input id="description" name="description" type="text" />
+                            <input id="description" name="description" type="text" value="{{ description }}" maxlength="255" />
                         </div>
                     </div>
 

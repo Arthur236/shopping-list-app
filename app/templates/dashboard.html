@@ -5,7 +5,7 @@
     <div class="content">
         <div class="cornerFab">
             <div class="fixed-action-btn wow bounceInRight">
-                <a href="/create_list" class="btn-floating btn-large tooltipped waves-effect waves-light red accent-2"
+                <a href="#create_modal" class="btn-floating btn-large tooltipped waves-effect waves-light red accent-2 modal-trigger"
                    data-position="left" data-delay="100" data-tooltip="Add Shopping List">
                     <i class="material-icons">add</i>
                 </a>
@@ -85,6 +85,36 @@
                 </div>
             </div>
         </div>
+
+    <!-- Item modal -->
+        <div id="create_modal" class="modal">
+            <div class="modal-content">
+                <h4>Add Item</h4>
+                <form method="POST" action="/create_list" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" required="required" type="text" autofocus />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="description">Description</label>
+                            <input id="description" name="description" type="text" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="add"
+                                class="modal-action waves-effect waves-green btn-flat left">
+                            Create
+                        </button>
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}
