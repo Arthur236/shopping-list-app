@@ -8,7 +8,7 @@ engines:
   csslint:
     enabled: true
   duplication:
-    enabled: false
+    enabled: true
     config:
       languages:
       - python:
@@ -21,5 +21,5 @@ ratings:
 exclude_paths:
 - spec/**/*
 - "**/vendor/**/*"
-- "css/materialize.css"
-- "js/materialize.js"
+- "app/static/css/materialize.css"
+- "app/static/js/materialize.js"
