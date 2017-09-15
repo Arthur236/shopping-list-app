@@ -22,4 +22,9 @@ exclude_paths:
 - spec/**/*
 - "**/vendor/**/*"
 - "app/static/css/materialize.css"
+- "app/static/css/animate.css"
+- "app/static/css/flickity.min.css"
 - "app/static/js/materialize.js"
+- "app/static/js/wow.js"
+- "app/static/js/jquery-3.2.1.min.js"
+- "app/static/js/flickity.pkgd.min.js"
