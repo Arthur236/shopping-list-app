@@ -153,7 +153,7 @@ def delete_list(name):
         list_object.delete_list(name, user)
         # Delete list items
         item_object.delete_list_items(name)
-        response = "Successfuly deleted " + name + " shopping list and its items"
+        response = "Successfully deleted " + name + " shopping list and its items"
         flash(response)
 
     return redirect(url_for('dashboard'))
@@ -203,6 +203,17 @@ def edit_item(list_name, item_name):
     View for editing shopping list items
     """
     user = session['username']
+
+    user_items = item_object.show_items(user, list_name)
+    list_items = [item for item in user_items if item['list'] == list_name]
+    qty = ''
+    prc = ''
+
+    for list_item in list_items:
+        if list_item['name'] == item_name:
+            qty = list_item['quantity']
+            prc = list_item['price']
+
     if request.method == 'POST':
         old_name = item_name
         new_name = request.form['name']
@@ -220,9 +231,8 @@ def edit_item(list_name, item_name):
         flash(status)
         return redirect(url_for('view_list', name=list_name))
 
-    return \
-        render_template("shopping_list_items_edit.html",
-                        list_name=list_name, item_name=item_name)
+    return render_template("shopping_list_items_edit.html", list_name=list_name, item_name=item_name,
+                           quantity=qty, price=prc)
 
 
 @app.route('/delete_item/<list_name>/<item_name>', methods=['POST'])

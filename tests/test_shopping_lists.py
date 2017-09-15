@@ -64,11 +64,11 @@ class ShoppingListTests(unittest.TestCase):
         Test if list is correctly updated
         """
         self.shopping_list_data.shopping_list = [{'owner': 'random', 'name': 'Awesome List',
-                                                  'description': 'Brief description'}]
+                                                  'description': 'Description'}]
         result = self.shopping_list_data.update_list('Awesome List', 'Awesome List 2',
-                                                     'Brief description', 'random')
-        self.assertEqual(result,
-                         [{'owner': 'random', 'name': 'Awesome List 2', 'description': 'Brief description'}])
+                                                     'Description', 'random')
+        self.assertEqual(result, [{'owner': 'random', 'name': 'Awesome List 2',
+                                   'description': 'Description'}])
 
     def test_update_existing_list(self):
         """
