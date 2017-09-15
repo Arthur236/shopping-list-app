@@ -4,15 +4,14 @@
 # For help setting your languages:
 # http://docs.codeclimate.com/article/169-configuring-analysis-languages
 #
-engines:
-  duplication:
-  	enabled: false
-
 languages:
   Ruby: false
   Javascript: false
   PHP: false
   Python: true
+
+duplication:
+  	enabled: false
 
 #
 # ---Exclude Files or Directories---
