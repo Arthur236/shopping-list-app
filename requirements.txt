@@ -23,7 +23,7 @@ pylint==1.7.2
 python-coveralls==2.9.1
 PyYAML==5.4
 rednose==1.2.2
-requests==2.18.4
+requests==2.20.0
 Scaffold==0.1.3
 six==1.10.0
 termstyle==0.1.11
